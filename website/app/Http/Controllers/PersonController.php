@@ -7,14 +7,12 @@ use Illuminate\Http\Request;
 
 class PersonController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $people = Person::all ();
+
+        return view ('people.index' , compact('people'));
     }
 
     /**
@@ -38,15 +36,11 @@ class PersonController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Person  $person
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Person $person)
     {
-        //
+
+        return view ('people.show', compact('person'));
     }
 
     /**
