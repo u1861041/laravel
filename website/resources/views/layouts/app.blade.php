@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,21 +7,26 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('website', 'Website') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    
+
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-gray-100 h-screen antialiased leading-none font-sans">
+<body >
+
+
+<div>
+
+    </div>
     <div id="app">
-        <header class="bg-blue-900 py-6">
+        <header class="bg-red-900 py-6">
             <div class="container mx-auto flex justify-between items-center px-6">
                 <div>
                     <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline">
-                        {{ config('app.name', 'Laravel') }}
+                            {{ config('Huddersfield Parliament', 'Huddersfield Parliament') }}
                     </a>
                 </div>
                 <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
@@ -41,11 +46,18 @@
                             {{ csrf_field() }}
                         </form>
                     @endguest
+
+
                 </nav>
+
             </div>
         </header>
 
         @yield('content')
+
+
+
+
     </div>
 </body>
 </html>
