@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<main class="sm:container sm:mx-auto sm:mt-10">
+<div class="sm:container sm:mx-auto sm:mt-10">
     <div class="w-full sm:px-6">
 
         @if (session('status'))
@@ -13,15 +13,43 @@
         <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
 
             <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
-                Dashboard
+                <h3 align="center">HUDDERSFIELD ACADEMY HOME PAGE</h3>
             </header>
 
-            <div class="w-full p-6">
-                <p class="text-gray-700">
-                    You are logged in!
-                </p>
-            </div>
+
+            <img src="{{ asset('img/homephoto.png') }}"  alt=""   width="300" height="300">
+
+
         </section>
+
+
+
+
+
+
+            <div >
+
+                <a href="{{ route('create') }}">- ADD A FOOTBALLER IN THE ACADEMY</a>
+
+                <br />
+                <br />
+            </div>
+
+            <div >
+
+                <a href="{{ route('index') }}">- PLAYERS LIST</a>
+
+                <br />
+                <br />
+            </div>
+
+
+
+
+
+
+
+
     </div>
-</main>
+
 @endsection

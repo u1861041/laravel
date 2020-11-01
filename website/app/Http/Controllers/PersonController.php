@@ -2,39 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Person;
+
 use Illuminate\Http\Request;
+use App\Models\Person;
+
+
 
 class PersonController extends Controller
 {
 
     public function index()
     {
-        $people = Person::all ();
+        $People = Person::all ();
 
-        return view ('people.index' , compact('people'));
+        return view ('people.index' , compact('People'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        return view ('people.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(request $request)
     {
-        //
+
+    $attribites = $request -> all(
+
+        'id',
+        'name',
+        'email',
+        'phone'
+    );
+
+        $people = Person::create ($attribites);
+
+        return redirect()->route('index')->with('success', 'Player Added');
+
+
     }
+
+
 
 
     public function show(Person $person)
@@ -43,28 +52,35 @@ class PersonController extends Controller
         return view ('people.show', compact('person'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Person  $person
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Person $person)
     {
-        //
+
+        return view ('people.update',compact('person'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Person  $person
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Person $person)
     {
-        //
+
+        $request->validate([
+            'id'=>'required',
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+
+        ]);
+
+
+        Person::whereid($person)->update($request->all('id','name','email','phone'));
+
+        return redirect()->route('index')->with('success', 'Data Updated');
+
     }
+
+
+
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -74,6 +90,10 @@ class PersonController extends Controller
      */
     public function destroy(Person $person)
     {
-        //
+        $person->delete();
+
+        return redirect()->route('index')->with('success', 'Data deleted');
+
+
     }
 }
